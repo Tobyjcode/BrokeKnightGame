@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7f43clq34gpg"
-path="res://.godot/imported/fruit.png-8d62a17ed89431b711ec1df22b1b9592.ctex"
+path="res://.godot/imported/fruit.png-741a27fa634ce117033eb29424f04908.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://brackeys_platformer_assets/sprites/fruit.png"
-dest_files=["res://.godot/imported/fruit.png-8d62a17ed89431b711ec1df22b1b9592.ctex"]
+source_file="res://toby_platformer_assets/sprites/fruit.png"
+dest_files=["res://.godot/imported/fruit.png-741a27fa634ce117033eb29424f04908.ctex"]
 
 [params]
 
