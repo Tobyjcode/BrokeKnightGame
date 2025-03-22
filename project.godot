@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://b6oghik0hdelp"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Music="*res://scenes/music.tscn"
+
+[dotnet]
+
+project/assembly_name="New Game Project"
 
 [input]
 
