@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://byv1sutmeac28"]
+[gd_scene load_steps=5 format=3 uid="uid://byv1sutmeac28"]
 
 [ext_resource type="Texture2D" uid="uid://cky77y0c7xr1b" path="res://toby_platformer_assets/sprites/world_tileset.png" id="1_u1fcr"]
+[ext_resource type="Script" uid="uid://c8yn8oj86x2s8" path="res://mysterybox.gd" id="1_xyz"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtvc1"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(14, 2)
+
 [node name="Mysterybox" type="AnimatableBody2D"]
+script = ExtResource("1_xyz")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u1fcr")
@@ -13,6 +18,13 @@ region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -6.28319
 shape = SubResource("RectangleShape2D_mtvc1")
-one_way_collision = true
+
+[node name="HitArea" type="Area2D" parent="."]
+position = Vector2(0, 8)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_area")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_area_entered"]
