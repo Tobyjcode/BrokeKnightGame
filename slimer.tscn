@@ -49,7 +49,7 @@ script = ExtResource("1_g4ddu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ac1me")
 autoplay = "default"
-frame_progress = 0.759362
+frame_progress = 0.162207
 flip_h = true
 
 [node name="Killzone" parent="AnimatedSprite2D" instance=ExtResource("2_g4ddu")]
