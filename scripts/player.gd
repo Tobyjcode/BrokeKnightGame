@@ -8,6 +8,7 @@ const ROLL_DURATION = 0.4
 const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := 1.0  # Store roll direction
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle jump (now allowed during roll)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY 
 
 	# Handle roll with single Shift press - can now roll anytime
 	if Input.is_action_just_pressed("shift") and not is_rolling:
@@ -66,3 +67,8 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("jump")
 
 	move_and_slide()
+
+func play_hurt_animation():
+	animated_sprite.play("hurt")
+	if hurt_sound:
+		hurt_sound.play()
