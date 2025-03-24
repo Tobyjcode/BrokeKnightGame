@@ -283,6 +283,9 @@ autoplay = "move"
 [node name="Platform4" parent="Platforms" instance=ExtResource("3_feb5d")]
 position = Vector2(328, 14)
 
+[node name="Platform5" parent="Platforms" instance=ExtResource("3_feb5d")]
+position = Vector2(562, -72)
+
 [node name="Slimer" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(438, 4)
 
@@ -334,3 +337,5 @@ theme_override_font_sizes/font_size = 8
 text = "You collected X coins."
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="Weapons" type="Node" parent="."]
