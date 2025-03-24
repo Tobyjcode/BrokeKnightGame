@@ -5,36 +5,46 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 const ROLL_SPEED = 200.0
 const ROLL_DURATION = 0.4
+const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var is_rolling := false
 var roll_timer := 0.0
+var roll_direction := 1.0  # Store roll direction
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
 	# Get movement direction
 	var direction := Input.get_axis("move_left", "move_right")
 	
-	# Handle roll with single Shift press
-	if Input.is_action_just_pressed("shift") and is_on_floor() and not is_rolling:
+	# Handle jump (now allowed during roll)
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Handle roll with single Shift press - can now roll anytime
+	if Input.is_action_just_pressed("shift") and not is_rolling:
 		is_rolling = true
 		roll_timer = ROLL_DURATION
+		# Store the direction at roll start, use movement direction if available
+		if direction != 0:
+			roll_direction = sign(direction)
+		else:
+			roll_direction = -1.0 if animated_sprite.flip_h else 1.0
 		animated_sprite.play("roll")
 	
 	if is_rolling:
 		roll_timer -= delta
-		# Roll in the direction the sprite is facing
-		if animated_sprite.flip_h:
-			velocity.x = -ROLL_SPEED
-		else:
-			velocity.x = ROLL_SPEED
+		# Base roll velocity
+		var roll_velocity = ROLL_SPEED * roll_direction
+		
+		# Allow some control during roll
+		if direction != 0:
+			roll_velocity += direction * SPEED * ROLL_CONTROL_MODIFIER
+		
+		velocity.x = roll_velocity
 			
 		if roll_timer <= 0:
 			is_rolling = false
