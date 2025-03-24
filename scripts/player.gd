@@ -62,7 +62,11 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("run")
 			velocity.x = -SPEED
 		else:
-			animated_sprite.play("idle")
+			# Check for move_down input
+			if Input.is_action_pressed("move_down"):
+				animated_sprite.play("chillin")
+			else:
+				animated_sprite.play("idle")
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		if not is_on_floor():

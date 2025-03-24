@@ -147,7 +147,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hl5qd")
 }],
-"loop": true,
+"loop": false,
 "name": &"chillin",
 "speed": 5.0
 }, {
@@ -289,7 +289,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"chillin"
 autoplay = "idle"
-frame_progress = 0.896644
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
