@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cedjbovepyti4"]
+
+[ext_resource type="Texture2D" uid="uid://c7f43clq34gpg" path="res://toby_platformer_assets/sprites/fruit.png" id="1_1vlng"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eybiv"]
+radius = 6.0
+
+[node name="Firepowerup" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1vlng")
+region_enabled = true
+region_rect = Rect2(2, 50, 11, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_eybiv")
