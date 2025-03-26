@@ -1,7 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://km4ydhittnex"]
+[gd_scene load_steps=17 format=3 uid="uid://km4ydhittnex"]
 
 [ext_resource type="Script" uid="uid://dskbueqxpgqww" path="res://weapon.gd" id="1_0t63x"]
 [ext_resource type="Texture2D" uid="uid://boflcqwqv5ybr" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/items/weapon/3.png" id="1_o2wld"]
+[ext_resource type="Texture2D" uid="uid://yvvx5xuq5rmg" path="res://toby_platformer_assets/PNG/3/1.png" id="3_j5syt"]
+[ext_resource type="Texture2D" uid="uid://cmckchthp2w3m" path="res://toby_platformer_assets/PNG/3/2.png" id="4_ff8w7"]
+[ext_resource type="Texture2D" uid="uid://blkdj8a4qmf3n" path="res://toby_platformer_assets/PNG/3/3.png" id="5_khggt"]
+[ext_resource type="Texture2D" uid="uid://bcwp8xci5ni1q" path="res://toby_platformer_assets/PNG/3/4.png" id="6_7e2dh"]
+[ext_resource type="Texture2D" uid="uid://dhk7wfuh78jbq" path="res://toby_platformer_assets/PNG/3/5.png" id="7_5yrxi"]
+[ext_resource type="Texture2D" uid="uid://dshosjruphpsh" path="res://toby_platformer_assets/PNG/3/6.png" id="8_ysmu5"]
+[ext_resource type="Texture2D" uid="uid://bxrbow0t88q6d" path="res://toby_platformer_assets/PNG/3/7.png" id="9_da8hw"]
+[ext_resource type="Texture2D" uid="uid://vohvtoxsyets" path="res://toby_platformer_assets/PNG/3/8.png" id="10_w1fqq"]
+[ext_resource type="Texture2D" uid="uid://c1npcel4s7w52" path="res://toby_platformer_assets/PNG/3/9.png" id="11_ui2p7"]
+[ext_resource type="Texture2D" uid="uid://bkqxtryt4dl1e" path="res://toby_platformer_assets/PNG/3/10.png" id="12_l6bnc"]
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -64,6 +74,44 @@ _data = {
 &"attack": SubResource("Animation_attack")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_yl3nb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_j5syt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ff8w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_khggt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7e2dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5yrxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ysmu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_da8hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_w1fqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ui2p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_l6bnc")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 20.0
+}]
+
 [node name="Weapon" type="Node2D"]
 position = Vector2(0, 2)
 script = ExtResource("1_0t63x")
@@ -77,3 +125,12 @@ texture = ExtResource("1_o2wld")
 libraries = {
 &"": SubResource("AnimationLibrary_xyz")
 }
+
+[node name="SlashSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -12)
+rotation = 6.28319
+scale = Vector2(0.126008, 0.123537)
+sprite_frames = SubResource("SpriteFrames_yl3nb")
+animation = &"slash"
+frame = 9
+frame_progress = 1.0
