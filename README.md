@@ -1,45 +1,42 @@
-Broke Knight Game
+# Broke Knight Game
 
-Broke Knight Game is an open-source 2D platformer developed using the Unity engine. Players control a knight navigating through various levels, overcoming obstacles, and battling enemies.
-Features
+**Broke Knight Game** is a 2D action platformer built with **Godot Engine**. Play as a broke but determined knight, overcoming obstacles and enemies in a challenging adventure.
 
-    Engaging Gameplay: Traverse diverse levels filled with challenges and adversaries.​
+## Features
 
-    Unity Engine: Built with Unity, facilitating cross-platform compatibility.​
+- **Exciting Platforming Action** – Navigate challenging levels filled with enemies and hazards.  
+- **Unique Mechanics** – Experience the struggles of a "broke" knight with limited resources.  
+- **Pixel Art Style** – Classic retro aesthetics.  
+- **Open Source** – Modify and enhance the game as you wish.  
 
-    Open Source: The complete source code is available for modification and enhancement.​
+## Installation & Running the Game
 
-Installation
+1. **Clone the Repository**:
 
-    Clone the Repository:
+git clone https://github.com/Tobyjcode/BrokeKnightGame.git
 
-    git clone https://github.com/Tobyjcode/BrokeKnightGame.git
+2. **Open in Godot**:
+- Install **[Godot Engine](https://godotengine.org/)**.  
+- Open the project by selecting `project.godot`.  
 
-    Open in Unity:
+3. **Run the Game**:
+- Click the **Play** button in Godot Editor.  
 
-        Launch Unity Hub.​
+## Contributing
 
-        Click on "Add" and select the cloned project folder.​
+1. **Fork the Repository**.  
+2. **Create a New Branch** (e.g., `feature-new-level`).  
+3. **Make Changes & Test** your modifications.  
+4. **Submit a Pull Request** with a clear description.  
 
-        Open the project with Unity Editor.​
-        Or Godot
+## License
 
-    Play the Game:
+This project is licensed under the **MIT License**. See `LICENSE` for details.  
 
-        In the Unity Editor, press the "Play" button to start the game.​
+## Contact
 
-Contributing
+For questions, suggestions, or bug reports, open an **issue** on the repository.  
 
-Contributions are welcome! To contribute:
+---
 
-    Fork the Repository: Click on the "Fork" button at the top right of the repository page.​
-
-    Create a New Branch: Name it descriptively, e.g., feature-new-level.​
-
-    Make Your Changes: Implement and test your modifications.​
-
-    Submit a Pull Request: Provide a clear description of the changes made.​
-
-License
-
-This project is licensed under the MIT License. For more details, refer to the LICENSE file in the repository.​
+[GitHub Repository](https://github.com/Tobyjcode/BrokeKnightGame)
