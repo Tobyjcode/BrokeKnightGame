@@ -13,6 +13,7 @@ const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
 var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := 1.0  # Store roll direction
+var current_weapon = null
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -78,3 +79,23 @@ func play_hurt_animation():
 	animated_sprite.play("hurt")
 	if hurt_sound:
 		hurt_sound.play()
+
+func equip_weapon(weapon):
+	if current_weapon:
+		current_weapon.queue_free()
+	current_weapon = weapon
+
+func _unhandled_input(event):
+	# Add this to your existing input handling
+	if event.is_action_pressed("attack") and current_weapon:
+		current_weapon.attack()
+
+# Add this helper method
+func is_player() -> bool:
+	return true
+
+func _ready():
+	# Test code - remove after testing
+	var weapon = load("res://weapon.tscn").instantiate()
+	add_child(weapon)
+	equip_weapon(weapon)

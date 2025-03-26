@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://2la2sk63owpj"]
+
+[ext_resource type="Texture2D" uid="uid://bws3eaqmkyxcb" path="res://toby_platformer_assets/free-effect-and-bullet-16x16/Fire Effect and Bullet 16x16.png" id="1_2pqqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ltu8"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(480, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ecg"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(496, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icfi2"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(512, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo6dx"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(528, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2yji"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(544, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjybw"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(224, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f37y5"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(240, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgnow"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(256, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwgbv"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(272, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umj4n"]
+atlas = ExtResource("1_2pqqt")
+region = Rect2(560, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiuiy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ltu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ecg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icfi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo6dx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2yji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjybw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f37y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgnow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwgbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umj4n")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 10.0
+}]
+
+[node name="Fire" type="Node"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aiuiy")
+animation = &"Fire"
+frame_progress = 0.902466
