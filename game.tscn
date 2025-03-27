@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6oghik0hdelp"]
+[gd_scene load_steps=18 format=3 uid="uid://b6oghik0hdelp"]
 
 [ext_resource type="PackedScene" uid="uid://pinkd122whhg" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cky77y0c7xr1b" path="res://toby_platformer_assets/sprites/world_tileset.png" id="2_e2o6t"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c8i4apgl0rqm4" path="res://game_manager.gd" id="8_j5wjh"]
 [ext_resource type="FontFile" uid="uid://x0e778lvoftj" path="res://toby_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://byv1sutmeac28" path="res://mysterybox.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://b471awnu7ecsw" path="res://scenes/slime.tscn" id="11_mfdv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -345,3 +346,6 @@ autowrap_mode = 2
 
 [node name="Mysterybox2" parent="." instance=ExtResource("10_hve3p")]
 position = Vector2(323, -31)
+
+[node name="Slime" parent="." instance=ExtResource("11_mfdv2")]
+position = Vector2(119, 37)

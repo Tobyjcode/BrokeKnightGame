@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://b471awnu7ecsw"]
+
+[ext_resource type="Script" uid="uid://nvgcfjq26al7" path="res://slimer.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://det5w24yonxte" path="res://toby_platformer_assets/sprites/slime_purple.png" id="2_texture"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtj8a"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86je8"]
+atlas = ExtResource("2_texture")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5g8n"]
+atlas = ExtResource("2_texture")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4pjk"]
+atlas = ExtResource("2_texture")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4ddu"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac1me"]
+atlas = ExtResource("2_texture")
+region = Rect2(24, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3m0c"]
+atlas = ExtResource("2_texture")
+region = Rect2(48, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgv77"]
+atlas = ExtResource("2_texture")
+region = Rect2(72, 54, 24, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ac1me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtj8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86je8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5g8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4pjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4ddu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac1me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3m0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgv77")
+}],
+"loop": true,
+"name": &"slimedeath",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
+size = Vector2(9, 12)
+
+[node name="Slimer" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ac1me")
+animation = &"slimedeath"
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_h3m0c")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(11, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(-11, 0)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

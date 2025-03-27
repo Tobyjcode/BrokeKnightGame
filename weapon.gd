@@ -49,6 +49,14 @@ func attack():
 		animation_player.stop()
 		animation_player.play("attack")
 		
+		# Check for slimes in attack range
+		var slimes = get_tree().get_nodes_in_group("slimes")  # Make sure slimes are in "slimes" group
+		for slime in slimes:
+			# If slime is close enough to the weapon
+			var distance = global_position.distance_to(slime.global_position)
+			if distance < 40:  # Adjust attack range as needed
+				slime.take_damage()
+		
 		# Wait for animation to finish
 		await animation_player.animation_finished
 		
