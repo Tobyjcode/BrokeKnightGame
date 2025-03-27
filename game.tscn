@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6oghik0hdelp"]
+[gd_scene load_steps=17 format=3 uid="uid://b6oghik0hdelp"]
 
 [ext_resource type="PackedScene" uid="uid://pinkd122whhg" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cky77y0c7xr1b" path="res://toby_platformer_assets/sprites/world_tileset.png" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cxm7k3bkes86e" path="res://platform.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://ear8lvlreyek" path="res://coin.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://d7ivlxxw3ha0" path="res://killzone.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://do0vmct6it6ft" path="res://foxprincess.tscn" id="5_hve3p"]
 [ext_resource type="PackedScene" uid="uid://ddgjvohrtasql" path="res://slimer.tscn" id="6_ryrav"]
 [ext_resource type="FontFile" uid="uid://dyisv6j2l7xpc" path="res://toby_platformer_assets/fonts/PixelOperator8.ttf" id="7_eow3j"]
 [ext_resource type="Script" uid="uid://c8i4apgl0rqm4" path="res://game_manager.gd" id="8_j5wjh"]
@@ -303,6 +304,9 @@ position = Vector2(318, 29)
 [node name="Coin5" parent="Coins" instance=ExtResource("4_fc0e3")]
 position = Vector2(245, 35)
 
+[node name="Foxprincess" parent="Coins" instance=ExtResource("5_hve3p")]
+position = Vector2(1764, -24)
+
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource("3_feb5d")]
@@ -330,7 +334,7 @@ position = Vector2(486, -191)
 position = Vector2(353, -304)
 
 [node name="Platform12" parent="Platforms" instance=ExtResource("3_feb5d")]
-position = Vector2(278, -278)
+position = Vector2(213, 54)
 
 [node name="Platform13" parent="Platforms" instance=ExtResource("3_feb5d")]
 position = Vector2(390, -248)
