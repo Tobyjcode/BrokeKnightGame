@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6oghik0hdelp"]
+[gd_scene load_steps=18 format=3 uid="uid://b6oghik0hdelp"]
 
 [ext_resource type="PackedScene" uid="uid://pinkd122whhg" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cky77y0c7xr1b" path="res://toby_platformer_assets/sprites/world_tileset.png" id="2_e2o6t"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dyisv6j2l7xpc" path="res://toby_platformer_assets/fonts/PixelOperator8.ttf" id="7_eow3j"]
 [ext_resource type="Script" uid="uid://c8i4apgl0rqm4" path="res://game_manager.gd" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://byv1sutmeac28" path="res://mysterybox.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://bs3pavht4e4ed" path="res://scenes/sign.tscn" id="11_mfdv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -451,3 +452,6 @@ position = Vector2(323, -31)
 
 [node name="Foxprincess" parent="." instance=ExtResource("5_hve3p")]
 position = Vector2(1768, 6)
+
+[node name="Sign" parent="." instance=ExtResource("11_mfdv2")]
+position = Vector2(93, -37)

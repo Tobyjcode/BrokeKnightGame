@@ -108,7 +108,7 @@ func _unhandled_input(event):
 		# Always do normal attack
 		current_weapon.attack()
 
-# Add this helper method
+# Add is_player method here
 func is_player() -> bool:
 	return true
 

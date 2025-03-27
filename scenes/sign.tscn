@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs3pavht4e4ed"]
+
+[ext_resource type="Script" uid="uid://b6ruyh2jpncve" path="res://scripts/sign.gd" id="1_sign"]
+[ext_resource type="Texture2D" uid="uid://cky77y0c7xr1b" path="res://toby_platformer_assets/sprites/world_tileset.png" id="2_tileset"]
+[ext_resource type="FontFile" uid="uid://x0e778lvoftj" path="res://toby_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_font"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="Sign" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_sign")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tileset")
+region_enabled = true
+region_rect = Rect2(128, 48, 16, 16)
+
+[node name="HintText" type="Label" parent="."]
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.1, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 16
+text = "Hint: Press SPACE to jump!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
