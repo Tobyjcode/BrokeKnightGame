@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://btyvqdt5hicu2"]
 
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_game_over"]
+[ext_resource type="Script" uid="uid://cbync75vpb4cy" path="res://scripts/game_over.gd" id="1_game_over"]
 [ext_resource type="FontFile" uid="uid://x0e778lvoftj" path="res://toby_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_font"]
 
 [node name="GameOver" type="Control"]

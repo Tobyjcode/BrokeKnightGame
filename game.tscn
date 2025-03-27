@@ -330,13 +330,8 @@ text = "Almost there...
 "
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("res://game_manager.gd")
-
-[node name="GameUI" parent="." instance=ExtResource("res://game_ui.tscn")]
-
-# Make sure to set up these references in the editor:
-@onready var score_label = $GameUI/MarginContainer/VBoxContainer/ScoreLabel
-@onready var slime_label = $GameUI/MarginContainer/VBoxContainer/SlimeLabel
+unique_name_in_owner = true
+script = ExtResource("8_j5wjh")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 offset_left = 418.0
