@@ -7,11 +7,14 @@ func _ready():
 	# Set up keyboard navigation
 	$VBoxContainer/MenuButton.grab_focus()
 	
-	# Update score displays
-	var game_manager = get_node("/root/GameManager")
-	if game_manager:
-		$VBoxContainer/ScoreContainer/CoinsLabel.text = "Coins: " + str(game_manager.score)
-		$VBoxContainer/ScoreContainer/SlimesLabel.text = "Slimes Defeated: " + str(game_manager.slimes_killed)
+	# Access the static variables directly from GameManager script
+	var GameManagerScript = load("res://game_manager.gd")
+	print("Score:", GameManagerScript.score)  # Debug print
+	print("Slimes:", GameManagerScript.slimes_killed)  # Debug print
+	
+	# Update the labels
+	$VBoxContainer/ScoreContainer/CoinsLabel.text = "Coins: " + str(GameManagerScript.score)
+	$VBoxContainer/ScoreContainer/SlimesLabel.text = "Slimes Defeated: " + str(GameManagerScript.slimes_killed)
 	
 	# Play victory sound
 	var victory_sound = AudioStreamPlayer.new()
