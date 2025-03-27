@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qapnn4gn0ue1"]
+[gd_scene load_steps=6 format=3 uid="uid://qapnn4gn0ue1"]
 
 [ext_resource type="Script" uid="uid://cyrli15iwxnxo" path="res://fireprojectile.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://2la2sk63owpj" path="res://fire.tscn" id="2_0"]
+[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/sounds/explosion.wav" id="3_explosion"]
+[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/12.wav" id="4_shoot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 12.0
@@ -17,6 +19,14 @@ script = ExtResource("1_script")
 shape = SubResource("CircleShape2D_1")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_explosion")
+bus = &"SFX"
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_shoot")
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
