@@ -19,6 +19,10 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
 		attack()
+	elif Input.is_action_just_pressed("shoot_fire"):
+		var parent = get_parent()
+		if parent.has_method("is_player") and parent.has_fire_power:
+			shoot_fire_projectile()
 	
 	# Update weapon and slash effect direction based on player direction
 	var parent = get_parent()
@@ -49,11 +53,6 @@ func attack():
 		animation_player.stop()
 		animation_player.play("attack")
 		
-		# Shoot fire projectile if player has fire power
-		var parent = get_parent()
-		if parent.has_method("is_player") and parent.has_fire_power:
-			shoot_fire_projectile()
-		
 		# Wait for animation to finish
 		await animation_player.animation_finished
 		
@@ -66,13 +65,15 @@ func attack():
 		can_attack = true
 
 func shoot_fire_projectile():
+	print("Shooting fire projectile")  # Debug print
 	var projectile = fire_projectile_scene.instantiate()
 	var parent = get_parent()
 	if parent and parent.has_method("is_player"):
-		# Spawn the projectile in front of the player
-		var spawn_offset = Vector2(20, 0)
-		if parent.animated_sprite.flip_h:
-			spawn_offset.x *= -1
-			projectile.set_direction(-1)
-		projectile.global_position = global_position + spawn_offset
 		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		print("Fire projectile position: ", projectile.global_position)  # Debug print
+		
+		if parent.animated_sprite.flip_h:
+			projectile.set_direction(-1)
+		else:
+			projectile.set_direction(1)

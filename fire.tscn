@@ -80,7 +80,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Fire" type="Node"]
+[node name="Fire" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aiuiy")

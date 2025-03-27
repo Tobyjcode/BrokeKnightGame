@@ -17,7 +17,6 @@ var current_weapon = null
 var has_fire_power = false
 var can_shoot = true
 var fire_cooldown = 0.5
-var fire_scene = preload("res://fireprojectile.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
