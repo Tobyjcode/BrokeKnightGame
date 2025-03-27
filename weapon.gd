@@ -3,7 +3,8 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var slash_sprite = $SlashSprite
-@onready var sword_sound = $SwordSound  # Add reference to the new sound player
+@onready var sword_sound = $SwordSound
+@onready var hit_sound = $HitSound  # Add reference to hit sound
 
 var is_attacking = false
 var attack_cooldown = 0.2
@@ -40,7 +41,7 @@ func attack():
 		is_attacking = true
 		can_attack = false
 		
-		# Play sword sound
+		# Play swing sound
 		if sword_sound:
 			sword_sound.play()
 		
@@ -55,12 +56,15 @@ func attack():
 		animation_player.play("attack")
 		
 		# Check for slimes in attack range
-		var slimes = get_tree().get_nodes_in_group("slimes")  # Make sure slimes are in "slimes" group
+		var slimes = get_tree().get_nodes_in_group("slimes")
 		for slime in slimes:
 			# If slime is close enough to the weapon
 			var distance = global_position.distance_to(slime.global_position)
 			if distance < 40:  # Adjust attack range as needed
 				slime.take_damage()
+				# Play hit sound when successfully hitting a slime
+				if hit_sound:
+					hit_sound.play()
 		
 		# Wait for animation to finish
 		await animation_player.animation_finished
