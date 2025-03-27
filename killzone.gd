@@ -9,6 +9,9 @@ func _on_body_entered(body: Node2D) -> void:
 	print("You Died")  # Print message
 	Engine.time_scale = 0.5
 	body.get_node("CollisionShape2D").queue_free()
+	# Reset scores when player dies
+	var GameManagerScript = load("res://game_manager.gd")
+	GameManagerScript.reset_scores()
 	timer.start()
 
 func _on_timer_timeout() -> void:

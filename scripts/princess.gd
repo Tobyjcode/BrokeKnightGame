@@ -9,11 +9,17 @@ func _on_body_entered(body):
 	print("Body entered: ", body.name)  # Debug print
 	if body.name == "Player":
 		print("Player detected!")  # Debug print
+		print("Current score before reset: ", GameManager.score)  # Add debug print
+		
 		# Play victory sound
 		var victory_sound = AudioStreamPlayer.new()
 		victory_sound.stream = preload("res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/victory-1.wav")
 		add_child(victory_sound)
 		victory_sound.play()
+		
+		# Reset scores before transitioning to victory screen
+		GameManager.reset_scores()  # Changed to direct reference
+		print("Score after reset: ", GameManager.score)  # Add debug print
 		
 		# Wait for sound to start
 		await get_tree().create_timer(0.1).timeout

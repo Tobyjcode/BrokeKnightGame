@@ -1,8 +1,8 @@
 extends Node
 
 # Make these static so they persist between scene changes
-static var score = 0
-static var slimes_killed = 0
+static var score: int = 0
+static var slimes_killed: int = 0
 var score_label
 var slime_label
 
@@ -20,6 +20,12 @@ func _ready():
 	slime_label = game_ui.get_node("MarginContainer/HBoxContainer/SlimeCounter/SlimeLabel")
 	
 	update_labels()
+
+# Add this new function to reset scores
+static func reset_scores():
+	print("Resetting scores in GameManager")  # Debug print
+	score = 0
+	slimes_killed = 0
 
 func add_point():
 	score += 1

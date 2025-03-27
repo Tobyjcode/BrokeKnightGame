@@ -9,6 +9,12 @@ func _ready():
 	$MenuContainer/StartButton.grab_focus()
 
 func _on_start_pressed():
+	# Load and use GameManager script
+	var GameManagerScript = load("res://game_manager.gd")
+	GameManagerScript.reset_scores()
+	print("Scores reset - starting fresh game!")  # Debug print
+	
+	# Change to game scene
 	get_tree().change_scene_to_file("res://game.tscn")
 
 func _on_quit_pressed():
