@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://pinkd122whhg"]
+[gd_scene load_steps=42 format=3 uid="uid://pinkd122whhg"]
 
 [ext_resource type="Texture2D" uid="uid://dgl8d46vq0hdp" path="res://toby_platformer_assets/sprites/knight.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bp4uft80003en" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="AudioStream" uid="uid://cw2io4dtoo46b" path="res://toby_platformer_assets/sounds/hurt.wav" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://b8gg7n8dr63rf" path="res://toby_platformer_assets/sounds/jump.wav" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://cpxn3jykwu8ce" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/3.wav" id="5_roll_sound"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl5qd"]
 atlas = ExtResource("1_4flbx")
@@ -300,3 +301,6 @@ stream = ExtResource("3_i3pqv")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hqtel")
+
+[node name="RollSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_roll_sound")

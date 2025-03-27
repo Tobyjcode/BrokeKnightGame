@@ -10,6 +10,7 @@ const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+@onready var roll_sound: AudioStreamPlayer2D = $RollSound
 var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := 1.0  # Store roll direction
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shift") and not is_rolling:
 		is_rolling = true
 		roll_timer = ROLL_DURATION
+		roll_sound.play()
 		# Store the direction at roll start, use movement direction if available
 		if direction != 0:
 			roll_direction = sign(direction)
