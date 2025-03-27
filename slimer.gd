@@ -1,20 +1,42 @@
-extends Node2D
+extends Node2D  # Change back to Node2D since that's what worked before
 
 const SLIMESPEED = 60
+const GRAVITY = 980
+const JUMP_FORCE = -300
+const JUMP_INTERVAL = 2.0  # Seconds between jumps
 const KILL_DISTANCE = 50  # How close you need to be to kill the slime
+const CHECK_INTERVAL = 0.1  # Check ground every 0.1 seconds
 
 var direction = 1 
-var game_manager: Node  # Add this line
+var game_manager: Node
 var is_dying = false
+var velocity = Vector2.ZERO
+var jump_timer = 0.0
+var check_timer = 0.0
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-var player_in_range = false  # Track if player is in hitbox
-var current_player = null    # Track the player reference
+@onready var ground_check: RayCast2D = $GroundCheck  # Reference the new ground check
+var player_in_range = false
+var current_player = null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_dying:
+		return
+		
+	# Apply gravity
+	velocity.y += GRAVITY * delta
+	
+	# Check if on ground using ground check raycast
+	if ground_check.is_colliding():
+		velocity.y = 0
+		# Handle jumping
+		jump_timer += delta
+		if jump_timer >= JUMP_INTERVAL:
+			velocity.y = JUMP_FORCE
+			jump_timer = 0
+	
 	# Normal movement code
 	if ray_cast_right.is_colliding():
 		direction = -1
@@ -23,12 +45,25 @@ func _process(delta: float) -> void:
 		direction = 1
 		animated_sprite.flip_h = false
 	
-	position.x += direction * SLIMESPEED * delta
+	velocity.x = direction * SLIMESPEED
+	
+	# Apply movement
+	position += velocity * delta
 
 func _ready():
-	# Get GameManager reference like in coin.gd
 	game_manager = get_node_or_null("/root/Game/GameManager")
 	add_to_group("slimes")
+	
+	# Set up raycasts
+	ray_cast_right.enabled = true
+	ray_cast_left.enabled = true
+	ground_check.enabled = true
+	ground_check.collision_mask = 1
+	
+	# Debug initial setup
+	print("Ground check setup - Position: ", ground_check.position)
+	print("Ground check collision mask: ", ground_check.collision_mask)
+	print("Ground check target position: ", ground_check.target_position)
 
 func take_damage():
 	if is_dying:  # Prevent multiple deaths

@@ -75,7 +75,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
 size = Vector2(9, 12)
 
-[node name="Slimer" type="Node2D"]
+[node name="Slimer" type="Node2D" groups=["slimes"]]
 script = ExtResource("1_g4ddu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -95,10 +95,16 @@ shape = SubResource("RectangleShape2D_h3m0c")
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 target_position = Vector2(11, 0)
+hit_from_inside = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 target_position = Vector2(-11, 0)
+hit_from_inside = true
+
+[node name="GroundCheck" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 10)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

@@ -75,7 +75,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
 size = Vector2(9, 12)
 
-[node name="Slimer" type="Node2D" groups=["slimes"]]
+[node name="Slimer2" type="CharacterBody2D" groups=["slimes"]]
+collision_layer = 4
 script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -98,5 +99,9 @@ target_position = Vector2(11, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 target_position = Vector2(-11, 0)
+
+[node name="GroundCheck" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 10)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
