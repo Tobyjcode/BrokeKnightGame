@@ -7,7 +7,7 @@ extends Node2D
 var is_attacking = false
 var attack_cooldown = 0.2
 var can_attack = true
-var fire_projectile_scene = preload("res://fireprojectile.tscn")
+var fire_projectile_scene = load("res://fireprojectile.tscn")
 
 func _ready():
 	# Initialize at reset position
@@ -19,10 +19,6 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("attack"):
 		attack()
-	elif Input.is_action_just_pressed("shoot_fire"):
-		var parent = get_parent()
-		if parent.has_method("is_player") and parent.has_fire_power:
-			shoot_fire_projectile()
 	
 	# Update weapon and slash effect direction based on player direction
 	var parent = get_parent()
@@ -65,15 +61,20 @@ func attack():
 		can_attack = true
 
 func shoot_fire_projectile():
-	print("Shooting fire projectile")  # Debug print
+	print("Shooting fire projectile")
 	var projectile = fire_projectile_scene.instantiate()
 	var parent = get_parent()
-	if parent and parent.has_method("is_player"):
-		get_tree().current_scene.add_child(projectile)
-		projectile.global_position = global_position
-		print("Fire projectile position: ", projectile.global_position)  # Debug print
-		
-		if parent.animated_sprite.flip_h:
-			projectile.set_direction(-1)
-		else:
-			projectile.set_direction(1)
+	
+	# Add projectile to the current scene
+	get_tree().current_scene.add_child(projectile)
+	
+	# Set position and direction with adjusted Y offset
+	var spawn_offset = Vector2(20, -10)  # Changed from -20 to -10 to spawn lower
+	
+	if parent.animated_sprite.flip_h:
+		spawn_offset.x = -20  # Keep same X offset for left direction
+		projectile.set_direction(-1)
+	else:
+		projectile.set_direction(1)
+	
+	projectile.global_position = global_position + spawn_offset

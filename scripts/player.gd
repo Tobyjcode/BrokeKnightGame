@@ -17,6 +17,7 @@ var current_weapon = null
 var has_fire_power = false
 var can_shoot = true
 var fire_cooldown = 0.5
+var attack_timer = 0.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -78,6 +79,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# Handle cooldown timer
+	if not can_shoot:
+		attack_timer += delta
+		if attack_timer >= fire_cooldown:
+			can_shoot = true
+			attack_timer = 0.0
+
 func play_hurt_animation():
 	animated_sprite.play("hurt")
 	if hurt_sound:
@@ -89,12 +97,14 @@ func equip_weapon(weapon):
 	current_weapon = weapon
 
 func _unhandled_input(event):
-	# Normal weapon attack
 	if event.is_action_pressed("attack") and current_weapon:
+		if has_fire_power and can_shoot:
+			# Shoot fire and start cooldown
+			current_weapon.shoot_fire_projectile()
+			can_shoot = false
+			attack_timer = 0.0
+		# Always do normal attack
 		current_weapon.attack()
-	# Fire power attack (E key)
-	elif event.is_action_pressed("shoot_fire") and has_fire_power and current_weapon:
-		current_weapon.shoot_fire_projectile()  # Use the weapon's shoot function instead
 
 # Add this helper method
 func is_player() -> bool:
@@ -108,4 +118,4 @@ func _ready():
 
 func enable_fire_power():
 	has_fire_power = true
-	print("Fire power enabled!")
+	print("Fire power enabled! Press E to shoot")  # Debug message

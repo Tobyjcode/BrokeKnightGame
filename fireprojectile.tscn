@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://qapnn4gn0ue1"]
 
-[ext_resource type="Script" path="res://fireprojectile.gd" id="1_0"]
+[ext_resource type="Script" uid="uid://cyrli15iwxnxo" path="res://fireprojectile.gd" id="1_0"]
 [ext_resource type="PackedScene" uid="uid://2la2sk63owpj" path="res://fire.tscn" id="2_0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 8.0
 
 [node name="FireProjectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_0")
 
 [node name="Fire" parent="." instance=ExtResource("2_0")]
