@@ -14,6 +14,10 @@ var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := 1.0  # Store roll direction
 var current_weapon = null
+var has_fire_power = false
+var can_shoot = true
+var fire_cooldown = 0.5
+var fire_scene = preload("res://fireprojectile.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -86,9 +90,12 @@ func equip_weapon(weapon):
 	current_weapon = weapon
 
 func _unhandled_input(event):
-	# Add this to your existing input handling
+	# Normal weapon attack
 	if event.is_action_pressed("attack") and current_weapon:
 		current_weapon.attack()
+	# Fire power attack (E key)
+	elif event.is_action_pressed("shoot_fire") and has_fire_power and current_weapon:
+		current_weapon.shoot_fire_projectile()  # Use the weapon's shoot function instead
 
 # Add this helper method
 func is_player() -> bool:
@@ -99,3 +106,7 @@ func _ready():
 	var weapon = load("res://weapon.tscn").instantiate()
 	add_child(weapon)
 	equip_weapon(weapon)
+
+func enable_fire_power():
+	has_fire_power = true
+	print("Fire power enabled!")

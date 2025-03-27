@@ -7,6 +7,7 @@ extends Node2D
 var is_attacking = false
 var attack_cooldown = 0.2
 var can_attack = true
+var fire_projectile_scene = preload("res://fireprojectile.tscn")
 
 func _ready():
 	# Initialize at reset position
@@ -42,12 +43,16 @@ func attack():
 		if slash_sprite:
 			slash_sprite.show()
 			slash_sprite.play("slash")
-			# Make slash follow sword rotation
 			slash_sprite.rotation = sprite.rotation
 		
 		# Play the weapon attack animation
 		animation_player.stop()
 		animation_player.play("attack")
+		
+		# Shoot fire projectile if player has fire power
+		var parent = get_parent()
+		if parent.has_method("is_player") and parent.has_fire_power:
+			shoot_fire_projectile()
 		
 		# Wait for animation to finish
 		await animation_player.animation_finished
@@ -59,3 +64,15 @@ func attack():
 		is_attacking = false
 		await get_tree().create_timer(attack_cooldown).timeout
 		can_attack = true
+
+func shoot_fire_projectile():
+	var projectile = fire_projectile_scene.instantiate()
+	var parent = get_parent()
+	if parent and parent.has_method("is_player"):
+		# Spawn the projectile in front of the player
+		var spawn_offset = Vector2(20, 0)
+		if parent.animated_sprite.flip_h:
+			spawn_offset.x *= -1
+			projectile.set_direction(-1)
+		projectile.global_position = global_position + spawn_offset
+		get_tree().current_scene.add_child(projectile)

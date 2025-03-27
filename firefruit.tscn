@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg3s4pxkcsphy"]
+
+[ext_resource type="Script" uid="uid://dkfy0yvb3v3wp" path="res://firefruit.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c7f43clq34gpg" path="res://toby_platformer_assets/sprites/fruit.png" id="2_fruit"]
+[ext_resource type="PackedScene" uid="uid://2la2sk63owpj" path="res://fire.tscn" id="3_fire"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 8.0
+
+[node name="Firefruit" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="Fire" parent="." instance=ExtResource("3_fire")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_fruit")
+region_enabled = true
+region_rect = Rect2(2, 50, 11, 13)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
