@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg3s4pxkcsphy"]
+[gd_scene load_steps=6 format=3 uid="uid://bg3s4pxkcsphy"]
 
 [ext_resource type="Script" uid="uid://dkfy0yvb3v3wp" path="res://firefruit.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://c7f43clq34gpg" path="res://toby_platformer_assets/sprites/fruit.png" id="2_fruit"]
 [ext_resource type="PackedScene" uid="uid://2la2sk63owpj" path="res://fire.tscn" id="3_fire"]
+[ext_resource type="AudioStream" uid="uid://c4l80vsy2c17u" path="res://toby_platformer_assets/sounds/power_up.wav" id="3_r5mtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 8.0
@@ -22,5 +23,8 @@ position = Vector2(0, -1)
 texture = ExtResource("2_fruit")
 region_enabled = true
 region_rect = Rect2(2, 50, 11, 13)
+
+[node name="Firepowerpickupsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_r5mtk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
