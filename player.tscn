@@ -301,6 +301,7 @@ stream = ExtResource("3_i3pqv")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hqtel")
+volume_db = -1.908
 
 [node name="RollSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_roll_sound")
