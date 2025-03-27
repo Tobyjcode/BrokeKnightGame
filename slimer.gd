@@ -7,17 +7,12 @@ var direction = 1
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var killzone = $Killzone  # Updated path to match scene structure
+@onready var killzone = $Killzone  # Update the reference path
 var player_in_range = false  # Track if player is in hitbox
 var current_player = null    # Track the player reference
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Check for E press when player is in range
-	if Input.is_action_just_pressed("interact") and player_in_range:
-		take_damage()
-		return
-	
 	# Normal movement code
 	if ray_cast_right.is_colliding():
 		direction = -1
@@ -29,15 +24,10 @@ func _process(delta: float) -> void:
 	position.x += direction * SLIMESPEED * delta
 
 func take_damage():
-	# Stop movement
-	direction = 0
-	
-	# Print death message
 	print("Slime defeated!")
-	
 	# Remove killzone so it can't hurt player while dying
-	if killzone:
-		killzone.queue_free()
+	if has_node("Killzone"):  # Check if node exists first
+		$Killzone.queue_free()
 	
 	# Play death animation
 	animated_sprite.play("slimedeath")
@@ -78,3 +68,6 @@ func _on_hitbox_area_entered(area):
 
 func _ready():
 	add_to_group("slimes")
+	# Initialize killzone reference
+	if !has_node("Killzone"):
+		push_warning("Killzone node not found in slime - player won't take damage from this slime")

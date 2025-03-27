@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddgjvohrtasql"]
+[gd_scene load_steps=14 format=3 uid="uid://ddgjvohrtasql"]
 
 [ext_resource type="Script" uid="uid://nvgcfjq26al7" path="res://slimer.gd" id="1_g4ddu"]
 [ext_resource type="Texture2D" uid="uid://det5w24yonxte" path="res://toby_platformer_assets/sprites/slime_purple.png" id="1_slawc"]
@@ -20,6 +20,22 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("1_slawc")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4ddu"]
+atlas = ExtResource("1_slawc")
+region = Rect2(0, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac1me"]
+atlas = ExtResource("1_slawc")
+region = Rect2(24, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3m0c"]
+atlas = ExtResource("1_slawc")
+region = Rect2(48, 54, 24, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgv77"]
+atlas = ExtResource("1_slawc")
+region = Rect2(72, 54, 24, 18)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ac1me"]
 animations = [{
 "frames": [{
@@ -38,18 +54,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4ddu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac1me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3m0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgv77")
+}],
+"loop": true,
+"name": &"slimedeath",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
 size = Vector2(9, 12)
 
-[node name="Slimer2" type="Node2D"]
+[node name="Slimer" type="Node2D"]
 script = ExtResource("1_g4ddu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ac1me")
+animation = &"slimedeath"
 autoplay = "default"
-frame_progress = 0.162207
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="."]

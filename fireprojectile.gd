@@ -21,11 +21,14 @@ func _physics_process(delta):
 func set_direction(new_direction):
     direction = new_direction
 
-# Delete the projectile when it hits something
+# Handle collisions with both terrain and entities
+func _on_body_entered(_body):  # Add underscore to indicate intentionally unused parameter
+    print("Fireball hit terrain")  # Debug print
+    queue_free()  # Destroy when hitting terrain
+
 func _on_area_entered(area):
     print("Fireball hit area: ", area.name)  # Debug print
     if area.get_parent().has_method("take_damage"):
-        print("Hit something that can take damage!")  # Debug print
         area.get_parent().take_damage()
     queue_free()
 
