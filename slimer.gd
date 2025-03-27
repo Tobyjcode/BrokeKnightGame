@@ -3,9 +3,10 @@ extends Node2D  # Change back to Node2D since that's what worked before
 const SLIMESPEED = 60
 const GRAVITY = 980
 const JUMP_FORCE = -300
-const JUMP_INTERVAL = 2.0  # Seconds between jumps
+const JUMP_INTERVAL = 4.0  # Increased from 2.0 to 4.0 seconds between jumps
 const KILL_DISTANCE = 50  # How close you need to be to kill the slime
 const CHECK_INTERVAL = 0.1  # Check ground every 0.1 seconds
+const SAFE_JUMP_DISTANCE = 200  # Maximum safe jumping distance
 
 var direction = 1 
 var game_manager: Node
@@ -18,6 +19,7 @@ var check_timer = 0.0
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ground_check: RayCast2D = $GroundCheck  # Reference the new ground check
+@onready var jump_check: RayCast2D = $JumpCheck  # New raycast for checking safe jumps
 var player_in_range = false
 var current_player = null
 
@@ -34,10 +36,32 @@ func _process(delta: float) -> void:
 		# Handle jumping
 		jump_timer += delta
 		if jump_timer >= JUMP_INTERVAL:
-			velocity.y = JUMP_FORCE
-			jump_timer = 0
+			# Only jump if it's safe
+			if is_safe_to_jump():
+				velocity.y = JUMP_FORCE
+				jump_timer = 0
+			else:
+				# If not safe to jump, turn around instead
+				direction *= -1
+				animated_sprite.flip_h = !animated_sprite.flip_h
+				jump_timer = JUMP_INTERVAL * 0.5  # Reset timer partially to check again soon
+			
+		# Edge detection - check if about to walk off platform
+		# Move ground check ahead of movement direction to look for edges
+		var original_pos = ground_check.position
+		ground_check.position.x = direction * 15  # Look further ahead (increased from 10 to 15)
+		ground_check.force_raycast_update()  # Force immediate update
+		
+		# If there's no ground ahead, turn around
+		if not ground_check.is_colliding():
+			direction *= -1
+			animated_sprite.flip_h = !animated_sprite.flip_h
+		
+		# Reset ground check position
+		ground_check.position = original_pos
+		ground_check.force_raycast_update()  # Force update after resetting
 	
-	# Normal movement code
+	# Normal wall collision checks
 	if ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
@@ -59,6 +83,13 @@ func _ready():
 	ray_cast_left.enabled = true
 	ground_check.enabled = true
 	ground_check.collision_mask = 1
+	
+	# Set up jump check raycast
+	jump_check = RayCast2D.new()
+	add_child(jump_check)
+	jump_check.enabled = true
+	jump_check.collision_mask = 1  # Same collision mask as ground check
+	jump_check.position = Vector2(0, 6)  # Same height as ground check
 	
 	# Debug initial setup
 	print("Ground check setup - Position: ", ground_check.position)
@@ -130,3 +161,21 @@ func _on_hitbox_area_entered(area):
 		print("Fireball hit slime!")  # Debug print
 		take_damage()
 		area.queue_free()  # Remove the fireball after it hits
+
+func is_safe_to_jump() -> bool:
+	# Calculate approximate landing position based on physics
+	var jump_time = (-2 * JUMP_FORCE) / GRAVITY  # Time to reach peak
+	var total_time = jump_time * 2  # Approximate time for full jump
+	var jump_distance = SLIMESPEED * direction * total_time
+	
+	# Set raycast to check landing position
+	jump_check.target_position = Vector2(jump_distance, 200)  # Check downward at landing position
+	jump_check.force_raycast_update()
+	
+	# If we detect a collision (platform) within safe distance, it's safe to jump
+	if jump_check.is_colliding():
+		var collision_point = jump_check.get_collision_point()
+		var vertical_distance = collision_point.y - global_position.y
+		return vertical_distance < SAFE_JUMP_DISTANCE
+	
+	return false

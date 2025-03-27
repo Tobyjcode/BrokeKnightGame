@@ -104,4 +104,8 @@ target_position = Vector2(-11, 0)
 position = Vector2(0, 6)
 target_position = Vector2(0, 10)
 
+[node name="JumpCheck" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 200)
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
