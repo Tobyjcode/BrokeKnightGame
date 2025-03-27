@@ -3,6 +3,7 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var slash_sprite = $SlashSprite
+@onready var sword_sound = $SwordSound  # Add reference to the new sound player
 
 var is_attacking = false
 var attack_cooldown = 0.2
@@ -38,6 +39,10 @@ func attack():
 	if can_attack and not is_attacking:
 		is_attacking = true
 		can_attack = false
+		
+		# Play sword sound
+		if sword_sound:
+			sword_sound.play()
 		
 		# Show and start slash effect
 		if slash_sprite:

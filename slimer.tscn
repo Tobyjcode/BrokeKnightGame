@@ -75,7 +75,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
 size = Vector2(9, 12)
 
-[node name="Slimer" type="Node2D" groups=["slimes"]]
+[node name="Slimer" type="Area2D" groups=["slimes"]]
 script = ExtResource("1_g4ddu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -85,7 +85,7 @@ autoplay = "default"
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

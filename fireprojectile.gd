@@ -28,9 +28,10 @@ func _on_body_entered(_body):  # Add underscore to indicate intentionally unused
 
 func _on_area_entered(area):
 	print("Fireball hit area: ", area.name)  # Debug print
-	if area.get_parent().has_method("take_damage"):
+	if area.name == "Hitbox" and area.get_parent().is_in_group("slimes"):
+		print("Hit a slime!")  # Debug print
 		area.get_parent().take_damage()
-	queue_free()
+	queue_free()  # Remove the fireball after it hits
 
 # Delete when off screen
 func _on_visible_on_screen_notifier_2d_screen_exited():

@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://vohvtoxsyets" path="res://toby_platformer_assets/PNG/3/8.png" id="10_w1fqq"]
 [ext_resource type="Texture2D" uid="uid://c1npcel4s7w52" path="res://toby_platformer_assets/PNG/3/9.png" id="11_ui2p7"]
 [ext_resource type="Texture2D" uid="uid://bkqxtryt4dl1e" path="res://toby_platformer_assets/PNG/3/10.png" id="12_l6bnc"]
+[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/6.wav" id="13_sound"]
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -134,3 +135,7 @@ sprite_frames = SubResource("SpriteFrames_yl3nb")
 animation = &"slash"
 frame = 9
 frame_progress = 1.0
+
+[node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_sound")
+volume_db = -10.0
