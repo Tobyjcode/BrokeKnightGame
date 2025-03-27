@@ -10,7 +10,6 @@ var is_dying = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var killzone = $Killzone  # Update the reference path
 var player_in_range = false  # Track if player is in hitbox
 var current_player = null    # Track the player reference
 
@@ -30,9 +29,6 @@ func _ready():
 	# Get GameManager reference like in coin.gd
 	game_manager = get_node_or_null("/root/Game/GameManager")
 	add_to_group("slimes")
-	# Initialize killzone reference
-	if !has_node("Killzone"):
-		push_warning("Killzone node not found in slime - player won't take damage from this slime")
 
 func take_damage():
 	if is_dying:  # Prevent multiple deaths
@@ -54,10 +50,6 @@ func take_damage():
 		$Hitbox.set_deferred("monitoring", false)
 		$Hitbox.set_deferred("monitorable", false)
 	
-	# Remove killzone so it can't hurt player while dying
-	if has_node("Killzone"):  # Check if node exists first
-		$Killzone.queue_free()
-	
 	# Play death animation
 	animated_sprite.play("slimedeath")
 	
@@ -76,12 +68,21 @@ func take_damage():
 
 func _on_hitbox_body_entered(body):
 	if body.has_method("is_player"):
-		player_in_range = true
-		current_player = body
-		# If player is falling, kill slime
 		var player = body as CharacterBody2D
-		if player.velocity.y > 0:  # Player is falling
+		
+		# If player is falling down, kill slimer
+		if player.velocity.y > 0:
 			take_damage()
+		# If player hits from side, hurt player
+		elif not is_dying:  # Only hurt player if slimer isn't already dying
+			if body.has_method("play_hurt_animation"):
+				body.play_hurt_animation()
+				print("You Died")
+				Engine.time_scale = 0.5
+				body.get_node("CollisionShape2D").queue_free()
+				await get_tree().create_timer(0.6).timeout
+				Engine.time_scale = 1
+				get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func _on_hitbox_body_exited(body):
 	if body.has_method("is_player"):

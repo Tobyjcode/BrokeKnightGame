@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddgjvohrtasql"]
+[gd_scene load_steps=13 format=3 uid="uid://ddgjvohrtasql"]
 
 [ext_resource type="Script" uid="uid://nvgcfjq26al7" path="res://slimer.gd" id="1_g4ddu"]
 [ext_resource type="Texture2D" uid="uid://det5w24yonxte" path="res://toby_platformer_assets/sprites/slime_purple.png" id="1_slawc"]
-[ext_resource type="PackedScene" uid="uid://d7ivlxxw3ha0" path="res://killzone.tscn" id="2_g4ddu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtj8a"]
 atlas = ExtResource("1_slawc")
@@ -86,16 +85,10 @@ autoplay = "default"
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_h3m0c")
-
-[node name="Killzone" parent="." instance=ExtResource("2_g4ddu")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_h3m0c")
 
@@ -107,4 +100,5 @@ target_position = Vector2(11, 0)
 position = Vector2(0, 6)
 target_position = Vector2(-11, 0)
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
