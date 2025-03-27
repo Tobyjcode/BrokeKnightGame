@@ -22,6 +22,7 @@ var check_timer = 0.0
 var jump_check: RayCast2D  # Remove @onready since we create it dynamically
 var player_in_range = false
 var current_player = null
+@onready var death_sound = $DeathSound  # Add this line
 
 func _process(delta: float) -> void:
 	if is_dying:
@@ -116,6 +117,10 @@ func take_damage():
 		$Hitbox.set_deferred("monitoring", false)
 		$Hitbox.set_deferred("monitorable", false)
 	
+	# Play death sound
+	if death_sound:
+		death_sound.play()
+	
 	# Play death animation
 	animated_sprite.play("slimedeath")
 	
@@ -129,6 +134,7 @@ func take_damage():
 	# Fade out near the end
 	tween.parallel().tween_property(self, "modulate:a", 0.0, 0.6).set_delay(1.0)
 	
+	# Wait for both sound and animation
 	await tween.finished
 	queue_free()
 

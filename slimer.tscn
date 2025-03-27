@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddgjvohrtasql"]
+[gd_scene load_steps=14 format=3 uid="uid://ddgjvohrtasql"]
 
 [ext_resource type="Script" uid="uid://nvgcfjq26al7" path="res://slimer.gd" id="1_g4ddu"]
 [ext_resource type="Texture2D" uid="uid://det5w24yonxte" path="res://toby_platformer_assets/sprites/slime_purple.png" id="1_slawc"]
+[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/monster-1.wav" id="3_monster"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtj8a"]
 atlas = ExtResource("1_slawc")
@@ -108,3 +109,8 @@ target_position = Vector2(0, 10)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_monster")
+bus = &"SFX"
+volume_db = 0.0
