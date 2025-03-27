@@ -152,6 +152,11 @@ func _on_hitbox_body_entered(body):
 				print("You Died")
 				Engine.time_scale = 0.5
 				body.get_node("CollisionShape2D").queue_free()
+				
+				# Reset scores when killed by slimer
+				var GameManagerScript = load("res://game_manager.gd")
+				GameManagerScript.reset_scores()
+				
 				await get_tree().create_timer(0.6).timeout
 				Engine.time_scale = 1
 				get_tree().change_scene_to_file("res://scenes/game_over.tscn")
