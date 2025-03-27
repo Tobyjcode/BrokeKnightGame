@@ -20,10 +20,12 @@ region_enabled = true
 region_rect = Rect2(128, 48, 16, 16)
 
 [node name="HintText" type="Label" parent="."]
+z_index = 100
+y_sort_enabled = true
 offset_left = -100.0
-offset_top = -40.0
+offset_top = -60.0
 offset_right = 100.0
-offset_bottom = -20.0
+offset_bottom = -40.0
 theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
 theme_override_colors/font_outline_color = Color(0.2, 0.1, 0.05, 1)
 theme_override_constants/outline_size = 4
