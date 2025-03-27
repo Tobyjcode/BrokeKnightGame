@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://do0vmct6it6ft"]
+[gd_scene load_steps=20 format=3 uid="uid://do0vmct6it6ft"]
 
 [ext_resource type="Texture2D" uid="uid://8lny40tbs1ew" path="res://toby_platformer_assets/craftpix-net-605776-free-yokai-pixel-art-character-sprites/Kitsune/Idle.png" id="1_fkfg7"]
 [ext_resource type="Texture2D" uid="uid://bprxob842esft" path="res://toby_platformer_assets/craftpix-net-605776-free-yokai-pixel-art-character-sprites/Kitsune/Idle_2.png" id="2_388vf"]
+[ext_resource type="Script" uid="uid://2cqv50uuls7u" path="res://scripts/foxprincess.gd" id="3_princess"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s6awc"]
 atlas = ExtResource("1_fkfg7")
@@ -109,12 +110,21 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Foxprincess" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxyz"]
+size = Vector2(50, 80)
+
+[node name="Foxprincess" type="Area2D"]
+collision_mask = 2
+script = ExtResource("3_princess")
 
 [node name="Princess" type="AnimatedSprite2D" parent="."]
 position = Vector2(21, -34)
 scale = Vector2(0.726563, 0.726563)
 sprite_frames = SubResource("SpriteFrames_cvwhb")
 autoplay = "default"
-frame_progress = 0.0792522
+frame_progress = 0.769715
 flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21, -34)
+shape = SubResource("RectangleShape2D_wxyz")

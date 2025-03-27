@@ -304,9 +304,6 @@ position = Vector2(318, 29)
 [node name="Coin5" parent="Coins" instance=ExtResource("4_fc0e3")]
 position = Vector2(245, 35)
 
-[node name="Foxprincess" parent="Coins" instance=ExtResource("5_hve3p")]
-position = Vector2(1764, -24)
-
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource("3_feb5d")]
@@ -331,10 +328,10 @@ position = Vector2(485, -143)
 position = Vector2(486, -191)
 
 [node name="Platform11" parent="Platforms" instance=ExtResource("3_feb5d")]
-position = Vector2(353, -304)
+position = Vector2(329, -283)
 
 [node name="Platform12" parent="Platforms" instance=ExtResource("3_feb5d")]
-position = Vector2(213, 54)
+position = Vector2(359, -314)
 
 [node name="Platform13" parent="Platforms" instance=ExtResource("3_feb5d")]
 position = Vector2(390, -248)
@@ -357,8 +354,11 @@ position = Vector2(655, -314)
 [node name="Platform6" parent="Platforms" instance=ExtResource("3_feb5d")]
 position = Vector2(1482, -23)
 
+[node name="Platform17" parent="Platforms" instance=ExtResource("3_feb5d")]
+position = Vector2(1537, -24)
+
 [node name="Platform7" parent="Platforms" instance=ExtResource("3_feb5d")]
-position = Vector2(1786, -7)
+position = Vector2(1792, 24)
 
 [node name="Slimer" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(438, 4)
@@ -448,3 +448,6 @@ script = ExtResource("8_j5wjh")
 
 [node name="Mysterybox2" parent="." instance=ExtResource("10_hve3p")]
 position = Vector2(323, -31)
+
+[node name="Foxprincess" parent="." instance=ExtResource("5_hve3p")]
+position = Vector2(1768, 6)
