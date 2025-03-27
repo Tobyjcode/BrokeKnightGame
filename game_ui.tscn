@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://yr827arwami0"]
+
+[ext_resource type="Texture2D" uid="uid://qyh5uhxy6bgp" path="res://toby_platformer_assets/sprites/coin.png" id="1_coin"]
+[ext_resource type="Texture2D" uid="uid://det5w24yonxte" path="res://toby_platformer_assets/sprites/slime_purple.png" id="2_slime"]
+[ext_resource type="FontFile" uid="uid://x0e778lvoftj" path="res://toby_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_font"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+resource_local_to_scene = true
+atlas = ExtResource("1_coin")
+region = Rect2(0, 0, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slime"]
+resource_local_to_scene = true
+atlas = ExtResource("2_slime")
+region = Rect2(0, 24, 24, 24)
+filter_clip = true
+
+[node name="GameUI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 80.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="CoinCounter" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CoinTexture" type="TextureRect" parent="MarginContainer/HBoxContainer/CoinCounter"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/CoinCounter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = ": 0"
+
+[node name="SlimeCounter" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SlimeTexture" type="TextureRect" parent="MarginContainer/HBoxContainer/SlimeCounter"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_slime")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlimeLabel" type="Label" parent="MarginContainer/HBoxContainer/SlimeCounter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.2, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = ": 0"
