@@ -66,5 +66,10 @@ func _on_hitbox_body_exited(body):
 		player_in_range = false
 		current_player = null
 
+func _on_hitbox_area_entered(area):
+	if area.is_in_group("fireballs"):
+		take_damage()
+		area.queue_free()  # Remove the fireball after it hits
+
 func _ready():
 	add_to_group("slimes")
