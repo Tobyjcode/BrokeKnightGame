@@ -19,7 +19,7 @@ var check_timer = 0.0
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ground_check: RayCast2D = $GroundCheck  # Reference the new ground check
-@onready var jump_check: RayCast2D = $JumpCheck  # New raycast for checking safe jumps
+var jump_check: RayCast2D  # Remove @onready since we create it dynamically
 var player_in_range = false
 var current_player = null
 
