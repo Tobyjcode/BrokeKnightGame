@@ -43,7 +43,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3m0c"]
 size = Vector2(9, 12)
 
-[node name="Slimer" type="Node2D"]
+[node name="Slimer2" type="Node2D"]
 script = ExtResource("1_g4ddu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -52,9 +52,17 @@ autoplay = "default"
 frame_progress = 0.162207
 flip_h = true
 
-[node name="Killzone" parent="AnimatedSprite2D" instance=ExtResource("2_g4ddu")]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_h3m0c")
+
+[node name="Killzone" parent="." instance=ExtResource("2_g4ddu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_h3m0c")
 
@@ -65,3 +73,5 @@ target_position = Vector2(11, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 target_position = Vector2(-11, 0)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

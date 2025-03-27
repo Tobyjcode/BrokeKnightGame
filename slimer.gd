@@ -7,7 +7,7 @@ var direction = 1
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var killzone = $AnimatedSprite2D/Killzone
+@onready var killzone = $Killzone  # Updated path to match scene structure
 var player_in_range = false  # Track if player is in hitbox
 var current_player = null    # Track the player reference
 
@@ -31,6 +31,9 @@ func _process(delta: float) -> void:
 func take_damage():
 	# Stop movement
 	direction = 0
+	
+	# Print death message
+	print("Slime defeated!")
 	
 	# Remove killzone so it can't hurt player while dying
 	if killzone:
@@ -67,7 +70,9 @@ func _on_hitbox_body_exited(body):
 		current_player = null
 
 func _on_hitbox_area_entered(area):
+	print("Area entered: ", area.name)  # Debug print
 	if area.is_in_group("fireballs"):
+		print("Fireball hit slime!")  # Debug print
 		take_damage()
 		area.queue_free()  # Remove the fireball after it hits
 

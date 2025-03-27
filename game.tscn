@@ -349,3 +349,6 @@ position = Vector2(323, -31)
 
 [node name="Slime" parent="." instance=ExtResource("11_mfdv2")]
 position = Vector2(119, 37)
+
+[node name="Slimer2" parent="." instance=ExtResource("11_mfdv2")]
+position = Vector2(324, -3)
