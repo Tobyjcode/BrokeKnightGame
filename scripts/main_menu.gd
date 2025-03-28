@@ -5,7 +5,7 @@ func _ready():
 	$MenuContainer/StartButton.pressed.connect(_on_start_pressed)
 	$MenuContainer/QuitButton.pressed.connect(_on_quit_pressed)
 	
-	# Set up keyboard navigation
+	# Set up keyboard/controller navigation
 	$MenuContainer/StartButton.grab_focus()
 
 func _on_start_pressed():
@@ -22,8 +22,17 @@ func _on_quit_pressed():
 
 # Handle keyboard/gamepad navigation
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept"):
+	# Handle both keyboard and PS4 controller inputs
+	if event.is_action_pressed("ui_accept") or (event is InputEventJoypadButton and event.button_index == 0):  # 0 is the X button on PS4
 		if $MenuContainer/StartButton.has_focus():
 			_on_start_pressed()
 		elif $MenuContainer/QuitButton.has_focus():
-			_on_quit_pressed() 
+			_on_quit_pressed()
+	
+	# Handle controller stick/d-pad navigation
+	if event.is_action_pressed("ui_down"):
+		if $MenuContainer/StartButton.has_focus():
+			$MenuContainer/QuitButton.grab_focus()
+	elif event.is_action_pressed("ui_up"):
+		if $MenuContainer/QuitButton.has_focus():
+			$MenuContainer/StartButton.grab_focus() 

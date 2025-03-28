@@ -4,7 +4,7 @@ func _ready():
 	# Connect button signal
 	$VBoxContainer/MenuButton.pressed.connect(_on_menu_pressed)
 	
-	# Set up keyboard navigation
+	# Set up keyboard/controller navigation
 	$VBoxContainer/MenuButton.grab_focus()
 	
 	# Access the static variables directly from GameManager script
@@ -27,5 +27,7 @@ func _on_menu_pressed():
 
 # Handle keyboard/gamepad navigation
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept") and $VBoxContainer/MenuButton.has_focus():
-		_on_menu_pressed() 
+	# Handle both keyboard and PS4 controller inputs
+	if event.is_action_pressed("ui_accept") or (event is InputEventJoypadButton and event.button_index == 0):  # 0 is X button on PS4
+		if $VBoxContainer/MenuButton.has_focus():
+			_on_menu_pressed() 
