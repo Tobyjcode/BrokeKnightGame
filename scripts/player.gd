@@ -11,6 +11,7 @@ const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var roll_sound: AudioStreamPlayer2D = $RollSound
+@onready var camera: Camera2D = $Camera2D
 var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := 1.0  # Store roll direction
@@ -19,6 +20,10 @@ var has_fire_power = false
 var can_shoot = true
 var fire_cooldown = 0.5
 var attack_timer = 0.0
+
+const CAMERA_SPEED = 5.0  # Adjust this value to change smoothing speed
+const LOOK_DOWN_DISTANCE = 50.0  # How far down to look
+var target_camera_offset = 0.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -72,8 +77,10 @@ func _physics_process(delta: float) -> void:
 			# Check for move_down input
 			if Input.is_action_pressed("move_down"):
 				animated_sprite.play("chillin")
+				target_camera_offset = LOOK_DOWN_DISTANCE
 			else:
 				animated_sprite.play("idle")
+				target_camera_offset = 0.0
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		if not is_on_floor():
@@ -87,6 +94,9 @@ func _physics_process(delta: float) -> void:
 		if attack_timer >= fire_cooldown:
 			can_shoot = true
 			attack_timer = 0.0
+
+	# Smooth camera movement
+	camera.offset.y = lerp(camera.offset.y, target_camera_offset, delta * CAMERA_SPEED)
 
 func play_hurt_animation():
 	animated_sprite.play("hurt")

@@ -220,7 +220,7 @@ position = Vector2(1, 1)
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(20, 29)
 
-[node name="f" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-29, -24)
 zoom = Vector2(4, 4)
 limit_bottom = 120
