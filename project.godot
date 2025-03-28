@@ -89,3 +89,9 @@ shoot_fire={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+
+[display]
+window/size/viewport_width=1908
+window/size/viewport_height=962
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
