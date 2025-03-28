@@ -249,7 +249,7 @@ scale = Vector2(0.726563, 0.726563)
 sprite_frames = SubResource("SpriteFrames_cvwhb")
 animation = &"attack"
 autoplay = "default"
-frame_progress = 0.129708
+frame_progress = 0.617294
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

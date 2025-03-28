@@ -14,6 +14,12 @@ func _ready():
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 
 func kill_player(player: Node2D):
+	# Play attack sound
+	var attack_sound = AudioStreamPlayer.new()
+	attack_sound.stream = preload("res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/2.wav")
+	add_child(attack_sound)
+	attack_sound.play()
+	
 	# Disable player controls
 	player.set_physics_process(false)
 	if player.has_method("play_hurt_animation"):
@@ -74,7 +80,7 @@ func _on_body_entered(body):
 				
 				# Add second message
 				var death_message2 = Label.new()
-				death_message2.text = "Should've gotten a job..."
+				death_message2.text = "Should've gotten a real job..."
 				death_message2.position = Vector2(-100, -40)
 				death_message2.modulate = Color(1, 0, 0)  # Red text
 				add_child(death_message2)
