@@ -19,12 +19,12 @@ func _ready() -> void:
 		
 		# Calculate scale to fit browser window while maintaining aspect ratio
 		var window_size = DisplayServer.window_get_size()
-		var scale_w = window_size.x / 1908.0
-		var scale_h = window_size.y / 962.0
-		var scale = min(scale_w, scale_h)
+		var viewport_scale_w = window_size.x / 1908.0
+		var viewport_scale_h = window_size.y / 962.0
+		var viewport_scale = min(viewport_scale_w, viewport_scale_h)
 		
 		# Apply the calculated scale
-		get_tree().root.content_scale_factor = scale
+		get_tree().root.content_scale_factor = viewport_scale
 		
 		# Add window resize handling
 		get_window().size_changed.connect(_on_window_size_changed)
@@ -85,7 +85,7 @@ func _unhandled_input(event):
 func _on_window_size_changed():
 	if OS.has_feature("web"):
 		var window_size = DisplayServer.window_get_size()
-		var scale_w = window_size.x / 1908.0
-		var scale_h = window_size.y / 962.0
-		var scale = min(scale_w, scale_h)
-		get_tree().root.content_scale_factor = scale
+		var viewport_scale_w = window_size.x / 1908.0
+		var viewport_scale_h = window_size.y / 962.0
+		var viewport_scale = min(viewport_scale_w, viewport_scale_h)
+		get_tree().root.content_scale_factor = viewport_scale
