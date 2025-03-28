@@ -1,6 +1,6 @@
 extends Control
 
-func _ready():
+func _ready() -> void:
 	# Connect button signals
 	$MenuContainer/StartButton.pressed.connect(_on_start_pressed)
 	$MenuContainer/QuitButton.pressed.connect(_on_quit_pressed)
@@ -8,15 +8,19 @@ func _ready():
 	# Set up keyboard/controller navigation
 	$MenuContainer/StartButton.grab_focus()
 
-func _on_start_pressed():
-	# Load and use GameManager script
+func _on_start_pressed() -> void:
 	var GameManagerScript = load("res://game_manager.gd")
-	GameManagerScript.reset_scores()
-	print("Scores reset - starting fresh game!")  # Debug print
+	if GameManagerScript:
+		GameManagerScript.reset_scores()
 	
-	# Change to game scene
-	get_tree().change_scene_to_file("res://game.tscn")
-
+	# Try loading game scene from root directory
+	var error = get_tree().change_scene_to_file("res://game.tscn")
+	if error != OK:
+		print("Failed to load game scene from root, trying scenes folder...")
+		error = get_tree().change_scene_to_file("res://scenes/game.tscn")
+		if error != OK:
+			print("Failed to load game scene. Error: ", error)
+const SLIMER = preload("res://slimer.tscn")
 func _on_quit_pressed():
 	get_tree().quit()
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cyrli15iwxnxo" path="res://fireprojectile.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://2la2sk63owpj" path="res://fire.tscn" id="2_0"]
-[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/sounds/explosion.wav" id="3_explosion"]
-[ext_resource type="AudioStream" uid="uid://your_uid_here" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/12.wav" id="4_shoot"]
+[ext_resource type="AudioStream" path="res://toby_platformer_assets/sounds/explosion.wav" id="3_explosion"]
+[ext_resource type="AudioStream" path="res://toby_platformer_assets/medieval-fantasy-1/medieval-fantasy-1/sounds/12.wav" id="4_shoot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 12.0

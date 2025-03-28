@@ -1,7 +1,7 @@
 extends Area2D
 
-var speed = 400  # Increased speed
-var direction = 1
+var speed: float = 400.0  # Changed to float
+var direction: float = 1.0  # Changed to float
 @onready var explosion_sound = $ExplosionSound
 @onready var shoot_sound = $ShootSound
 
@@ -15,7 +15,7 @@ func _ready():
 	if shoot_sound:
 		shoot_sound.play()  # Just play it, don't wait
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	# Move the projectile
 	position.x += speed * direction * delta
 	if has_node("Fire/AnimatedSprite2D"):
@@ -27,7 +27,7 @@ func set_direction(new_direction):
 # Handle collisions with both terrain and entities
 func _on_body_entered(_body):
 	print("Fireball hit terrain")  # Debug print
-	if shoot_sound and shoot_sound.playing:  # Wait for shoot sound if it's still playing
+	if shoot_sound and shoot_sound.playing:
 		await shoot_sound.finished
 	queue_free()
 

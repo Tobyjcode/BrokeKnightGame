@@ -10,8 +10,8 @@ func _ready():
 		print("Looking for GameManager in alternate location")
 		game_manager = get_node("/root/GameManager")
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	if game_manager:
-		print("Adding point, current score: ", game_manager.score)  # Debug print
+		print("Adding point, current score: ", game_manager.score)
 		game_manager.add_point()
 	animation_player.play("pickupcoin")

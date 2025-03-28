@@ -1,0 +1,1 @@
+@onready var weapon_scene = preload("res://scenes/weapon.tscn") 

@@ -175,7 +175,7 @@ func _on_hitbox_area_entered(area):
 
 func is_safe_to_jump() -> bool:
 	# Calculate approximate landing position based on physics
-	var jump_time = (-2 * JUMP_FORCE) / GRAVITY  # Time to reach peak
+	var jump_time = (-2.0 * JUMP_FORCE) / GRAVITY  # Time to reach peak
 	var total_time = jump_time * 2  # Approximate time for full jump
 	var jump_distance = SLIMESPEED * direction * total_time
 	

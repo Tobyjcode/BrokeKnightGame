@@ -25,6 +25,7 @@ func _unhandled_input(event):
 			$VBoxContainer/RetryButton.grab_focus()
 
 func _on_retry_pressed():
+	# Change scene without using UIDs
 	get_tree().change_scene_to_file("res://game.tscn")
 
 func _on_main_menu_pressed():

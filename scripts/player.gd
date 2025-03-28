@@ -1,34 +1,34 @@
 extends CharacterBody2D
 
-
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 const ROLL_SPEED = 200.0
 const ROLL_DURATION = 0.4
-const ROLL_CONTROL_MODIFIER = 0.5  # How much control player has during roll
+const ROLL_CONTROL_MODIFIER = 0.5
+const CAMERA_SPEED = 5.0
+const LOOK_DOWN_DISTANCE = 50.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var roll_sound: AudioStreamPlayer2D = $RollSound
 @onready var camera: Camera2D = $Camera2D
+@onready var weapon_scene = preload("res://weapon.tscn")
+
 var is_rolling := false
 var roll_timer := 0.0
-var roll_direction := 1.0  # Store roll direction
+var roll_direction := 1.0
 var current_weapon = null
 var has_fire_power = false
 var can_shoot = true
 var fire_cooldown = 0.5
 var attack_timer = 0.0
-
-const CAMERA_SPEED = 5.0  # Adjust this value to change smoothing speed
-const LOOK_DOWN_DISTANCE = 50.0  # How far down to look
 var target_camera_offset = 0.0
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity - use the built-in gravity directly
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += ProjectSettings.get_setting("physics/2d/default_gravity", 980.0) * delta
 
 	# Get movement direction
 	var direction := Input.get_axis("move_left", "move_right")
@@ -122,9 +122,8 @@ func _unhandled_input(event):
 func is_player() -> bool:
 	return true
 
-func _ready():
-	# Test code - remove after testing
-	var weapon = load("res://weapon.tscn").instantiate()
+func _ready() -> void:
+	var weapon = weapon_scene.instantiate()
 	add_child(weapon)
 	equip_weapon(weapon)
 
