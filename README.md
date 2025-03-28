@@ -45,7 +45,7 @@ git clone https://github.com/Tobyjcode/BrokeKnightGame.git
 - Click the **Play** button in Godot Editor.  
 
 4. **Play Online**:
-- The game is also available to play on [itch.io](https://[your-username].itch.io/broke-knight-game)
+- The game is also available to play on [itch.io](https://coladrinker.itch.io/thebrokeknight)
 
 ## Contributing
 
