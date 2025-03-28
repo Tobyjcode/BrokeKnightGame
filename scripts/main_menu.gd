@@ -12,11 +12,22 @@ func _ready() -> void:
 	# Web-specific setup
 	if OS.has_feature("web"):
 		$MenuContainer/QuitButton.hide()
-		# Match exactly to your debugger view
-		get_window().size = Vector2i(1908, 962)
-		# Force the viewport to match your debugger view
+		
+		# Set up viewport scaling that maintains your preferred aspect ratio
 		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 		get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+		
+		# Calculate scale to fit browser window while maintaining aspect ratio
+		var window_size = DisplayServer.window_get_size()
+		var scale_w = window_size.x / 1908.0
+		var scale_h = window_size.y / 962.0
+		var scale = min(scale_w, scale_h)
+		
+		# Apply the calculated scale
+		get_tree().root.content_scale_factor = scale
+		
+		# Add window resize handling
+		get_window().size_changed.connect(_on_window_size_changed)
 
 func _on_start_pressed() -> void:
 	var GameManagerScript = load("res://game_manager.gd")
@@ -69,4 +80,12 @@ func _unhandled_input(event):
 		if $MenuContainer/FullscreenButton.has_focus():
 			$MenuContainer/QuitButton.grab_focus()
 		elif $MenuContainer/QuitButton.has_focus():
-			$MenuContainer/StartButton.grab_focus() 
+			$MenuContainer/StartButton.grab_focus()
+
+func _on_window_size_changed():
+	if OS.has_feature("web"):
+		var window_size = DisplayServer.window_get_size()
+		var scale_w = window_size.x / 1908.0
+		var scale_h = window_size.y / 962.0
+		var scale = min(scale_w, scale_h)
+		get_tree().root.content_scale_factor = scale
