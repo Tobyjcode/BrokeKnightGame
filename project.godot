@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="TheBrokeKnight"
+config/description="A charming 2D platformer where you play as a knight deep in debt. Master precise platforming, engage in strategic combat, and navigate through beautifully crafted pixel-art worlds. With fluid controls and challenging gameplay, help our broke hero find fortune and glory - or at least enough gold to pay the rent!"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

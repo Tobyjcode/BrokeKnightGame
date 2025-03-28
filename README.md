@@ -1,3 +1,25 @@
+🗡️ **BROKE KNIGHT GAME** 🛡️
+
+Ever dreamed of being a valiant knight? Well, this one's broke... but that won't stop them! Join our penniless protagonist on an epic (and budget-conscious) adventure through a perilous medieval world.
+
+**Why Play Broke Knight Game?**
+- 💰 Experience the struggles of adventuring on a shoestring budget
+- ⚔️ Master precise platforming and combat mechanics
+- 🏰 Explore beautifully crafted pixel art environments
+- 🎮 Simple to learn, challenging to master
+- 🌟 Perfect for speedrunners and casual players alike
+
+**Features:**
+- Fluid platforming mechanics
+- Challenging combat encounters
+- Charming pixel art style
+- Original soundtrack
+- Controller support
+
+Can you help our broke knight find glory despite their empty pockets? Download now and prove that valor isn't measured by the size of your coin purse!
+
+*Made with Godot Engine and a lot of heart ❤️*
+
 # Broke Knight Game
 
 **Broke Knight Game** is a 2D action platformer built with **Godot Engine**. Play as a broke but determined knight, overcoming obstacles and enemies in a challenging adventure.
@@ -21,6 +43,9 @@ git clone https://github.com/Tobyjcode/BrokeKnightGame.git
 
 3. **Run the Game**:
 - Click the **Play** button in Godot Editor.  
+
+4. **Play Online**:
+- The game is also available to play on [itch.io](https://[your-username].itch.io/broke-knight-game)
 
 ## Contributing
 
